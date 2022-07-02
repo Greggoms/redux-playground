@@ -12,6 +12,9 @@ export default function Nav() {
         <li>
           <Link to="/users">Users</Link>
         </li>
+        <li>
+          <Link to="/profile">Profile</Link>
+        </li>
       </ul>
     </NavContainer>
   )

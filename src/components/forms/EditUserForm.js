@@ -30,6 +30,7 @@ export default function EditUserForm(props) {
         <div className="grid">
           <div className="main">
             <div className="info-general">
+              <input {...register("id")} defaultValue={user.id} type="hidden" />
               <label>
                 <span>Name</span>
                 <input
@@ -37,15 +38,6 @@ export default function EditUserForm(props) {
                   placeholder="Brand New"
                   defaultValue={user ? user.name : ""}
                   type="text"
-                />
-              </label>
-              <label>
-                <span>ID</span>
-                <input
-                  {...register("id")}
-                  defaultValue={user.id}
-                  type="text"
-                  readOnly
                 />
               </label>
               <label>
@@ -194,7 +186,8 @@ const EditUserContainer = styled.form`
     flex-direction: column;
     justify-content: center;
 
-    width: fit-content;
+    width: 100%;
+    max-width: 400px;
     margin: 0 auto;
   }
 
