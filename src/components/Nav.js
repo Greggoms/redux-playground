@@ -38,6 +38,7 @@ export default function Nav() {
 const NavContainer = styled.nav`
   background: #333;
   padding: 20px !important;
+  margin-bottom: 30px;
 
   ul {
     display: flex;

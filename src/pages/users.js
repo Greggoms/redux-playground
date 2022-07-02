@@ -101,12 +101,17 @@ export default function Users() {
 }
 
 const UsersContainer = styled.section`
-  margin: 30px auto;
+  margin: 0 2vw;
+
   ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 50px;
     list-style-type: none;
+  }
+
+  li {
+    height: fit-content;
   }
 
   .currentUser {

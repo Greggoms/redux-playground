@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 
 export default function Home() {
   return (
-    <div>
+    <div style={{ width: "fit-content", margin: "0 auto" }}>
       <h1>Redux Playground</h1>
       <h3>
         <Link to="/users">State manipulation</Link>

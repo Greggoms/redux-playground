@@ -35,7 +35,7 @@ export default function EditUserForm(props) {
                 <span>Name</span>
                 <input
                   {...register("name")}
-                  placeholder="Brand New"
+                  placeholder="Bruce Wayne"
                   defaultValue={user ? user.name : ""}
                   type="text"
                 />
@@ -82,7 +82,7 @@ export default function EditUserForm(props) {
                 <span>Street Address</span>
                 <input
                   {...register("address.street")}
-                  placeholder={user.name}
+                  placeholder="123 Main St"
                   defaultValue={user.address.street}
                 />
               </label>
@@ -98,7 +98,7 @@ export default function EditUserForm(props) {
                 <span>City</span>
                 <input
                   {...register("address.city")}
-                  placeholder={user.name}
+                  placeholder="Denver"
                   defaultValue={user.address.city}
                 />
               </label>
@@ -114,7 +114,7 @@ export default function EditUserForm(props) {
                 <span>Latitude</span>
                 <input
                   {...register("address.geo.lat")}
-                  placeholder="-37.3159"
+                  placeholder="39.74391185636215"
                   defaultValue={user.address.geo.lat}
                 />
               </label>
@@ -122,7 +122,7 @@ export default function EditUserForm(props) {
                 <span>Longitude</span>
                 <input
                   {...register("address.geo.lng")}
-                  placeholder="81.1496"
+                  placeholder="-104.99787437840354"
                   defaultValue={user.address.geo.lng}
                 />
               </label>
