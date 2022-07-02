@@ -17,9 +17,7 @@ export default function Users() {
     if (users.length === 0) {
       fetchUsers()
     }
-    console.log(users)
-    console.log(currentUser)
-  }, [users, currentUser])
+  }, [users])
 
   const handleSetEditing = id => {
     setEditing(!editing)

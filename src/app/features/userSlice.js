@@ -9,14 +9,17 @@ export const userSlice = createSlice({
       state.value = action.payload
     },
   },
+
   // https://stackoverflow.com/questions/67577835/same-action-triggering-in-multiple-slices-redux-toolkit
   // slideshowp2 answer
   // This allows for 1 action (modifyUser) to update
   // 2 slice state values (this user.value & usersSlice's users.value)
   extraReducers: {
     "users/modifyUser": (state, action) => {
-      console.log("[userSlice]:", action.payload)
-      state.value = action.payload
+      // eslint-disable-next-line
+      if (action.payload.id == state.value.id) {
+        state.value = action.payload
+      }
     },
   },
 })
