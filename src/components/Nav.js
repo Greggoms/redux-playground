@@ -7,13 +7,28 @@ export default function Nav() {
     <NavContainer>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link
+            to="/"
+            activeStyle={{ color: "#f9f9f9", textDecoration: "underline" }}
+          >
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/users">Users</Link>
+          <Link
+            to="/users"
+            activeStyle={{ color: "#f9f9f9", textDecoration: "underline" }}
+          >
+            Users
+          </Link>
         </li>
         <li>
-          <Link to="/profile">Profile</Link>
+          <Link
+            to="/profile"
+            activeStyle={{ color: "#f9f9f9", textDecoration: "underline" }}
+          >
+            Profile
+          </Link>
         </li>
       </ul>
     </NavContainer>
@@ -21,9 +36,22 @@ export default function Nav() {
 }
 
 const NavContainer = styled.nav`
+  background: #333;
+  padding: 20px !important;
+
   ul {
     display: flex;
-    gap: 10px;
+    align-content: center;
+    justify-content: center;
+    gap: 50px;
+
     list-style-type: none;
+  }
+
+  li {
+    a {
+      color: #ccc;
+      text-decoration: none;
+    }
   }
 `

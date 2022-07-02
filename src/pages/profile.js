@@ -7,72 +7,75 @@ const ProfilePage = () => {
   const user = useSelector(selectUser)
   return user ? (
     <ProfileContainer>
-      <div className="general">
-        <h1>{user.name}'s Profile</h1>
-        <div className="label">
-          <span>ID</span>
-          <p>{user.id}</p>
-        </div>
-        <div className="label">
-          <span>Username</span>
-          <p>{user.username}</p>
-        </div>
-        <div className="label">
-          <span>Email</span>
-          <p>{user.email}</p>
-        </div>
-        <div className="label">
-          <span>Phone #</span>
-          <p>{user.phone}</p>
-        </div>
-        <div className="label">
-          <span>Website</span>
-          <p>{user.website}</p>
-        </div>
-      </div>
-      <div className="location">
-        <h2>Address</h2>
-        <div className="label">
-          <span>Street</span>
-          <p>{user.address.street}</p>
-        </div>
-        <div className="label">
-          <span>Suite #</span>
-          <p>{user.address.suite}</p>
-        </div>
-        <div className="label">
-          <span>City</span>
-          <p>{user.address.city}</p>
-        </div>
-        <div className="label">
-          <span>Zipcode</span>
-          <p>{user.address.zipcode}</p>
-        </div>
-        <div className="coords">
-          <h4>Geo</h4>
+      <h1>{user.name}'s Profile</h1>
+      <div className="content">
+        <div className="general">
+          <h2>General</h2>
           <div className="label">
-            <span>Latitude</span>
-            <p>{user.address.geo.lat}</p>
+            <span>ID</span>
+            <p>{user.id}</p>
           </div>
           <div className="label">
-            <span>Longitude</span>
-            <p>{user.address.geo.lng}</p>
+            <span>Username</span>
+            <p>{user.username}</p>
+          </div>
+          <div className="label">
+            <span>Email</span>
+            <p>{user.email}</p>
+          </div>
+          <div className="label">
+            <span>Phone #</span>
+            <p>{user.phone}</p>
+          </div>
+          <div className="label">
+            <span>Website</span>
+            <p>{user.website}</p>
           </div>
         </div>
-      </div>
-      <div className="company">
-        <h2>Company</h2>
-        <div className="label">
-          <span>Name</span>
-          <p>{user.company.name}</p>
+        <div className="location">
+          <h2>Address</h2>
+          <div className="label">
+            <span>Street</span>
+            <p>{user.address.street}</p>
+          </div>
+          <div className="label">
+            <span>Suite #</span>
+            <p>{user.address.suite}</p>
+          </div>
+          <div className="label">
+            <span>City</span>
+            <p>{user.address.city}</p>
+          </div>
+          <div className="label">
+            <span>Zipcode</span>
+            <p>{user.address.zipcode}</p>
+          </div>
+          <div className="coords">
+            <h4>Geo</h4>
+            <div className="label">
+              <span>Latitude</span>
+              <p>{user.address.geo.lat}</p>
+            </div>
+            <div className="label">
+              <span>Longitude</span>
+              <p>{user.address.geo.lng}</p>
+            </div>
+          </div>
         </div>
-        <div className="label">
-          <span>Catchphrase</span>
-          <p>{user.company.catchphrase}</p>
-        </div>
-        <div className="label">
-          <span>Bs?</span>
-          <p>{user.company.bs}</p>
+        <div className="company">
+          <h2>Company</h2>
+          <div className="label">
+            <span>Name</span>
+            <p>{user.company.name}</p>
+          </div>
+          <div className="label">
+            <span>Catchphrase</span>
+            <p>{user.company.catchphrase}</p>
+          </div>
+          <div className="label">
+            <span>Bs?</span>
+            <p>{user.company.bs}</p>
+          </div>
         </div>
       </div>
     </ProfileContainer>
@@ -84,9 +87,20 @@ const ProfilePage = () => {
 export default ProfilePage
 
 const ProfileContainer = styled.section`
-  display: flex;
-  justify-content: center;
-  gap: 50px;
+  h1 {
+    text-align: center;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 30px auto;
+    width: max-content;
+
+    @media only screen and (min-width: 46.75rem) {
+      flex-direction: row;
+    }
+  }
 
   margin-top: 30px;
 
@@ -96,6 +110,17 @@ const ProfileContainer = styled.section`
     display: flex;
     flex-direction: column;
     gap: 15px;
+    padding: 20px;
+  }
+
+  .general {
+    background: lightblue;
+  }
+  .location {
+    background: lightsalmon;
+  }
+  .company {
+    background: lightseagreen;
   }
 
   .label {
@@ -114,6 +139,9 @@ const ProfileContainer = styled.section`
 
   span {
     font-size: 10pt;
-    color: #999;
+    color: #555;
+  }
+  p {
+    color: #000;
   }
 `
