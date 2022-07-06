@@ -11,16 +11,23 @@ const UserDetails = props => {
     return (
       <UserDetailsContainer>
         <h2>{user.name}'s Page</h2>
-        <h3>Requests</h3>
-        <ul>
-          {user.requests.map((request, index) => (
-            <li key={index}>
-              <p>
-                {request.begin} to {request.end} using {request.hours} hours.
-              </p>
-            </li>
-          ))}
-        </ul>
+        {user.requests ? (
+          <>
+            <h3>Requests</h3>
+            <ul>
+              {user.requests.map((request, index) => (
+                <li key={index}>
+                  <p>
+                    {request.begin} to {request.end} using {request.hours}{" "}
+                    hours.
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <p>No Requests</p>
+        )}
       </UserDetailsContainer>
     )
   } else {
