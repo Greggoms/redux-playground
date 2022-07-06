@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { userAuth } from "../../utils/fetchUser"
 
 export const usersSlice = createSlice({
   name: "users",
@@ -36,6 +37,22 @@ export const usersSlice = createSlice({
     // probably won't look into this for a while
     addUser: (state, action) => {
       state.value = [action.payload, ...state.value]
+    },
+  },
+  extraReducers: {
+    "user/requestTimeOff": (state, action) => {
+      const user = state.value.find(person => person.id == userAuth)
+      const index = state.value.indexOf(user)
+      if (index !== -1) {
+        if (state.value[index].requests) {
+          state.value[index].requests = [
+            ...state.value[index].requests,
+            action.payload,
+          ]
+        } else {
+          state.value[index].requests = [action.payload]
+        }
+      }
     },
   },
 })

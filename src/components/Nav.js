@@ -16,18 +16,18 @@ export default function Nav() {
         </li>
         <li>
           <Link
-            to="/users"
-            activeStyle={{ color: "#f9f9f9", textDecoration: "underline" }}
-          >
-            Users
-          </Link>
-        </li>
-        <li>
-          <Link
             to="/profile"
             activeStyle={{ color: "#f9f9f9", textDecoration: "underline" }}
           >
             Profile
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/admin"
+            activeStyle={{ color: "#f9f9f9", textDecoration: "underline" }}
+          >
+            Admin
           </Link>
         </li>
       </ul>

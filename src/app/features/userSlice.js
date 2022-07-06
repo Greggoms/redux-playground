@@ -8,6 +8,13 @@ export const userSlice = createSlice({
     setUser: (state, action) => {
       state.value = action.payload
     },
+    requestTimeOff: (state, action) => {
+      if (state.value.requests) {
+        state.value.requests = [...state.value.requests, action.payload]
+      } else {
+        state.value = { ...state.value, requests: [action.payload] }
+      }
+    },
   },
 
   // https://stackoverflow.com/questions/67577835/same-action-triggering-in-multiple-slices-redux-toolkit
@@ -25,7 +32,7 @@ export const userSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setUser } = userSlice.actions
+export const { setUser, requestTimeOff } = userSlice.actions
 
 // Selectors
 export const selectUser = state => state.user.value

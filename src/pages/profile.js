@@ -2,6 +2,7 @@ import React from "react"
 import { useSelector } from "react-redux/es/exports"
 import { selectUser } from "../app/features/userSlice"
 import styled from "styled-components"
+import RequestUpdateForm from "../components/RequestUpdateForm"
 
 const ProfilePage = () => {
   const user = useSelector(selectUser)
@@ -78,6 +79,19 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
+      <RequestUpdateForm />
+      {user.requests && (
+        <ul className="request-list">
+          <h2>Requests ({user.requests.length})</h2>
+          {user.requests.map((request, index) => (
+            <li key={index}>
+              <p>
+                {request.begin} to {request.end} using {request.hours} hours.
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
     </ProfileContainer>
   ) : (
     <h2>Loading...</h2>
@@ -143,5 +157,10 @@ const ProfileContainer = styled.section`
   }
   p {
     color: #000;
+  }
+
+  .request-list {
+    width: fit-content;
+    margin: 20px auto;
   }
 `

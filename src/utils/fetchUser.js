@@ -1,12 +1,12 @@
 import { store } from "../app/store"
 import { setUser } from "../app/features/userSlice"
 
-export default async function fetchUser() {
-  // This changes your user profile.
-  // Requires browser refresh after saving.
-  // Options are based on user.id  and are integers 1 through 10
-  const userAuth = 2
+// This changes your user profile.
+// Requires browser refresh after saving.
+// Options are based on user.id  and are integers 1 through 10
+export const userAuth = 2
 
+export default async function fetchUser() {
   try {
     await fetch("https://jsonplaceholder.typicode.com/users")
       .then(response => response.json())
