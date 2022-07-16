@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { userAuth } from "../../utils/fetchUser"
 
 export const usersSlice = createSlice({
   name: "users",
@@ -7,9 +6,12 @@ export const usersSlice = createSlice({
     value: [],
   },
   reducers: {
-    // Pull the users onto the UI
+    // Pull/Remove the users into the store
     setUsers: (state, action) => {
       state.value = action.payload
+    },
+    clearUsers: state => {
+      state.value = []
     },
     // Remove user from the list
     deleteUser: (state, action) => {
@@ -19,8 +21,7 @@ export const usersSlice = createSlice({
     // Replace the user with a modified version
     modifyUser: (state, action) => {
       // 1) Locate the person I'm trying to edit
-      // eslint-disable-next-line
-      const user = state.value.find(person => person.id == action.payload.id)
+      const user = state.value.find(person => person.id === action.payload.id)
 
       // 2) Find the index of that person in the store/state.
       const index = state.value.indexOf(user)
@@ -33,24 +34,19 @@ export const usersSlice = createSlice({
       }
       console.log(action.payload.name, "has been updated!")
     },
-    // Not configured
-    // probably won't look into this for a while
-    addUser: (state, action) => {
-      state.value = [action.payload, ...state.value]
-    },
   },
   extraReducers: {
     "user/requestTimeOff": (state, action) => {
-      const user = state.value.find(person => person.id == userAuth)
+      const user = state.value.find(person => person.id === action.payload.id)
       const index = state.value.indexOf(user)
       if (index !== -1) {
         if (state.value[index].requests) {
           state.value[index].requests = [
             ...state.value[index].requests,
-            action.payload,
+            action.payload.request,
           ]
         } else {
-          state.value[index].requests = [action.payload]
+          state.value[index].requests = [action.payload.request]
         }
       }
     },
@@ -58,7 +54,8 @@ export const usersSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setUsers, addUser, deleteUser, modifyUser } = usersSlice.actions
+export const { setUsers, clearUsers, deleteUser, modifyUser } =
+  usersSlice.actions
 
 // Selectors
 export const selectUsers = state => state.users.value

@@ -6,7 +6,7 @@ export default function Home() {
     <div style={{ width: "fit-content", margin: "0 auto" }}>
       <h1>Redux Playground</h1>
       <h3>
-        <Link to="/admin">State manipulation</Link>
+        <Link to="/app/admin">State manipulation</Link>
       </h3>
     </div>
   )

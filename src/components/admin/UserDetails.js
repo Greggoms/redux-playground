@@ -5,6 +5,8 @@ import styled from "styled-components"
 
 const UserDetails = props => {
   const users = useSelector(selectUsers)
+  // == because returned id is somehow not an int
+  // eslint-disable-next-line
   const user = users.find(user => props.params["*"] == user.id)
 
   if (user) {

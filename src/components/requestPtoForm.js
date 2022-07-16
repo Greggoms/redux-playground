@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import styled from "styled-components"
 import { requestTimeOff } from "../app/features/userSlice"
 
-const RequestUpdateForm = () => {
+const RequestPtoForm = props => {
   const [hours, setHours] = useState(0)
   const [beginDate, setBeginDate] = useState("")
   const [endDate, setEndDate] = useState("")
@@ -14,9 +14,12 @@ const RequestUpdateForm = () => {
     console.log("Something happened!")
     dispatch(
       requestTimeOff({
-        begin: beginDate,
-        end: endDate,
-        hours: hours,
+        id: props.id,
+        request: {
+          begin: beginDate,
+          end: endDate,
+          hours: hours,
+        },
       })
     )
   }
@@ -57,7 +60,7 @@ const RequestUpdateForm = () => {
   )
 }
 
-export default RequestUpdateForm
+export default RequestPtoForm
 
 const RequestFormContainer = styled.section`
   width: 100%;

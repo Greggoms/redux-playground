@@ -2,11 +2,11 @@ const path = require("path")
 
 exports.onCreatePage = async ({ page, actions }) => {
   const { createPage } = actions
-  console.log("Page - " + page.page)
-  if (page.path.match(/^\/admin/)) {
+  if (page.path.match(/^\/app/)) {
+    page.matchPath = `/app/*`
     createPage({
-      path: "/admin/users",
-      matchPath: "/admin/users/*",
+      path: "/app/admin/users",
+      matchPath: "/app/admin/users/*",
       component: path.resolve("src/components/admin/UserDetails.js"),
     })
   }

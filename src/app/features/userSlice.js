@@ -2,17 +2,26 @@ import { createSlice } from "@reduxjs/toolkit"
 
 export const userSlice = createSlice({
   name: "user",
-  initialState: {},
+  initialState: { userAuth: null, fakeDoc: null },
   reducers: {
-    // Pull the user info onto the UI
-    setUser: (state, action) => {
-      state.value = action.payload
+    login: (state, action) => {
+      state.userAuth = action.payload
+    },
+    logout: state => {
+      state.userAuth = null
+      state.fakeDoc = null
+    },
+    setUserDoc: (state, action) => {
+      state.fakeDoc = action.payload
     },
     requestTimeOff: (state, action) => {
-      if (state.value.requests) {
-        state.value.requests = [...state.value.requests, action.payload]
+      if (state.fakeDoc.requests) {
+        state.fakeDoc.requests = [
+          ...state.fakeDoc.requests,
+          action.payload.request,
+        ]
       } else {
-        state.value = { ...state.value, requests: [action.payload] }
+        state.fakeDoc = { ...state.fakeDoc, requests: [action.payload.request] }
       }
     },
   },
@@ -23,8 +32,7 @@ export const userSlice = createSlice({
   // 2 slice state values (this user.value & usersSlice's users.value)
   extraReducers: {
     "users/modifyUser": (state, action) => {
-      // eslint-disable-next-line
-      if (action.payload.id == state.value.id) {
+      if (action.payload.id === state.value.id) {
         state.value = action.payload
       }
     },
@@ -32,9 +40,10 @@ export const userSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setUser, requestTimeOff } = userSlice.actions
+export const { login, logout, setUserDoc, requestTimeOff } = userSlice.actions
 
 // Selectors
-export const selectUser = state => state.user.value
+export const selectUserAuth = state => state.user.userAuth
+export const selectUserDoc = state => state.user.fakeDoc
 
 export default userSlice.reducer

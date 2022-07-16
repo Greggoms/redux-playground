@@ -1,24 +1,17 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import { deleteUser, selectUsers } from "../../app/features/usersSlice"
-import { selectUser } from "../../app/features/userSlice"
+import { selectUserAuth } from "../../app/features/userSlice"
 import EditUserForm from "./EditUserForm"
-import fetchUsers from "../../utils/fetchUsers"
 
 export default function Users() {
   const dispatch = useDispatch()
   const users = useSelector(selectUsers)
-  const currentUser = useSelector(selectUser)
+  const currentUser = useSelector(selectUserAuth)
   const [editing, setEditing] = useState(false)
   const [userId, setUserId] = useState("")
-
-  useEffect(() => {
-    if (users.length === 0) {
-      fetchUsers()
-    }
-  }, [users])
 
   const handleSetEditing = id => {
     setEditing(!editing)
@@ -57,7 +50,7 @@ export default function Users() {
                   </button>
                 </div>
                 <div className="info-general">
-                  <Link to={`/admin/users/${user.id}`}>
+                  <Link to={`/app/admin/users/${user.id}`}>
                     <h2>
                       {user.name}{" "}
                       {currentUser && currentUser.id === user.id && "(You)"}

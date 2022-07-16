@@ -2,13 +2,24 @@ import React from "react"
 import Layout from "./src/components/Layout"
 import { Provider } from "react-redux"
 import { store } from "./src/app/store"
-import { createGlobalStyle } from "styled-components"
+import { setUsers } from "./src/app/features/usersSlice"
+import { createGlobalStyle, ThemeProvider } from "styled-components"
+import theme from "./src/theme"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.min.css"
 
 export const wrapRootElement = ({ element, props }) => {
+  fetch("https://jsonplaceholder.typicode.com/users")
+    .then(response => response.json())
+    .then(json => store.dispatch(setUsers(json)))
+
   return (
     <Provider store={store}>
-      <GlobalStyles />
-      <Layout {...props}>{element}</Layout>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Layout {...props}>{element}</Layout>
+      </ThemeProvider>
+      <ToastContainer newestOnTop={true} position="top-center" />
     </Provider>
   )
 }

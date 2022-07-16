@@ -1,65 +1,69 @@
 import React from "react"
 import { useSelector } from "react-redux/es/exports"
-import { selectUser } from "../app/features/userSlice"
+import { selectUserAuth, selectUserDoc } from "../app/features/userSlice"
 import styled from "styled-components"
-import RequestUpdateForm from "../components/RequestUpdateForm"
+import RequestPtoForm from "./RequestPtoForm"
 
 const ProfilePage = () => {
-  const user = useSelector(selectUser)
+  const user = useSelector(selectUserAuth)
+  const userDoc = useSelector(selectUserDoc)
+
   return user ? (
     <ProfileContainer>
-      <h1>{user.name}'s Profile</h1>
+      <h1>{userDoc.name}'s Profile</h1>
       <div className="content">
         <div className="general">
           <h2>General</h2>
           <div className="label">
             <span>ID</span>
-            <p>{user.id}</p>
+            <p>
+              {userDoc.id} {userDoc.id <= 5 ? `(Admin)` : `(Default)`}
+            </p>
           </div>
           <div className="label">
             <span>Username</span>
-            <p>{user.username}</p>
+            <p>{userDoc.username}</p>
           </div>
           <div className="label">
             <span>Email</span>
-            <p>{user.email}</p>
+            <p>{userDoc.email}</p>
           </div>
           <div className="label">
             <span>Phone #</span>
-            <p>{user.phone}</p>
+            <p>{userDoc.phone}</p>
           </div>
           <div className="label">
             <span>Website</span>
-            <p>{user.website}</p>
+            <p>{userDoc.website}</p>
           </div>
         </div>
         <div className="location">
           <h2>Address</h2>
           <div className="label">
             <span>Street</span>
-            <p>{user.address.street}</p>
+            <p>{userDoc.address.street}</p>
           </div>
           <div className="label">
             <span>Suite #</span>
-            <p>{user.address.suite}</p>
+            <p>{userDoc.address.suite}</p>
           </div>
           <div className="label">
             <span>City</span>
-            <p>{user.address.city}</p>
+            <p>{userDoc.address.city}</p>
           </div>
           <div className="label">
             <span>Zipcode</span>
-            <p>{user.address.zipcode}</p>
+            <p>{userDoc.address.zipcode}</p>
           </div>
           <div className="coords">
             <h4>Geo</h4>
             <div className="label">
               <span>Latitude</span>
-              <p>{user.address.geo.lat}</p>
+              <p>{userDoc.address.geo.lat}</p>
             </div>
             <div className="label">
               <span>Longitude</span>
-              <p>{user.address.geo.lng}</p>
+              <p>{userDoc.address.geo.lng}</p>
             </div>
           </div>
         </div>
@@ -67,23 +71,23 @@ const ProfilePage = () => {
           <h2>Company</h2>
           <div className="label">
             <span>Name</span>
-            <p>{user.company.name}</p>
+            <p>{userDoc.company.name}</p>
           </div>
           <div className="label">
             <span>Catchphrase</span>
-            <p>{user.company.catchphrase}</p>
+            <p>{userDoc.company.catchphrase}</p>
           </div>
           <div className="label">
             <span>Bs?</span>
-            <p>{user.company.bs}</p>
+            <p>{userDoc.company.bs}</p>
           </div>
         </div>
       </div>
-      <RequestUpdateForm />
-      {user.requests && (
+      <RequestPtoForm id={userDoc.id} />
+      {userDoc.requests && (
         <ul className="request-list">
-          <h2>Requests ({user.requests.length})</h2>
-          {user.requests.map((request, index) => (
+          <h2>Requests ({userDoc.requests.length})</h2>
+          {userDoc.requests.map((request, index) => (
             <li key={index}>
               <p>
                 {request.begin} to {request.end} using {request.hours} hours.
