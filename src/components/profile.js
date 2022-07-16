@@ -2,7 +2,7 @@ import React from "react"
 import { useSelector } from "react-redux/es/exports"
 import { selectUserAuth, selectUserDoc } from "../app/features/userSlice"
 import styled from "styled-components"
-import RequestPtoForm from "./RequestPtoForm"
+import RequestPtoForm from "./requestPtoForm"
 
 const ProfilePage = () => {
   const user = useSelector(selectUserAuth)
